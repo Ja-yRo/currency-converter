@@ -36,6 +36,7 @@ public class CurrencyConverter {
                 System.out.println(amount + " Euros = " + f.format(pound) + " Pounds");
                 break;
         }
-        System.out.println("Thank you for using the converter.");
+	//Change "Thank you" to "Thank's" to test jenkins auto update
+        System.out.println("Thank's for using the converter.");
     }
 }
