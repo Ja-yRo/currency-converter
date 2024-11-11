@@ -1,36 +1,41 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-class CurrencyConverterTest {
+public class CurrencyConverterTest {
 
-    // Argument Validity Tests
+
     @Test
-    void testNoArguments() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    public void testNoArguments() {
+        try {
             CurrencyConverter.main(new String[]{});
-        });
-        assertEquals("Error: Please provide both an amount and a currency type.", exception.getMessage());
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Please provide both an amount and a currency type.", e.getMessage());
+        }
     }
 
     @Test
-    void testInvalidFormatArguments() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    public void testInvalidFormatArguments() {
+        try {
             CurrencyConverter.main(new String[]{"abc", "dollars"});
-        });
-        assertEquals("Error: Amount should be a numeric value.", exception.getMessage());
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Amount should be a numeric value.", e.getMessage());
+        }
     }
 
     @Test
-    void testMissingCurrencyArgument() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    public void testMissingCurrencyArgument() {
+        try {
             CurrencyConverter.main(new String[]{"100"});
-        });
-        assertEquals("Error: Please provide both an amount and a currency type.", exception.getMessage());
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Please provide both an amount and a currency type.", e.getMessage());
+        }
     }
 
-
     @Test
-    void testCurrencyCaseInsensitive() {
+    public void testCurrencyCaseInsensitive() {
         assertEquals("100 Dollars = 74 Pounds, 88 Euros", CurrencyConverter.convert(100, "dollars"));
         assertEquals("100 Dollars = 74 Pounds, 88 Euros", CurrencyConverter.convert(100, "DOLLARS"));
         assertEquals("100 Dollars = 74 Pounds, 88 Euros", CurrencyConverter.convert(100, "Dollars"));
@@ -44,19 +49,18 @@ class CurrencyConverterTest {
         assertEquals("100 Euros = 113 Dollars, 84 Pounds", CurrencyConverter.convert(100, "Euros"));
     }
 
-
     @Test
-    void testDollarConversions() {
+    public void testDollarConversions() {
         assertEquals("100 Dollars = 74 Pounds, 88 Euros", CurrencyConverter.convert(100, "dollars"));
     }
 
     @Test
-    void testPoundConversions() {
+    public void testPoundConversions() {
         assertEquals("100 Pounds = 136 Dollars, 119 Euros", CurrencyConverter.convert(100, "pounds"));
     }
 
     @Test
-    void testEuroConversions() {
+    public void testEuroConversions() {
         assertEquals("100 Euros = 113 Dollars, 84 Pounds", CurrencyConverter.convert(100, "euros"));
     }
 }
