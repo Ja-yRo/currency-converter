@@ -5,10 +5,20 @@ public class CurrencyConverter {
 
     public static void main(String[] args) {
 
-        double amount, dollar, pound, euro;
+        if (args.length < 2) {
+            throw new IllegalArgumentException("Error: Please provide both an amount and a currency type.");
+        }
+
+        double amount;
+        try {
+            amount = Double.parseDouble(args[0]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Error: Amount should be a numeric value.");
+        }
+
+        double dollar, pound, euro;
         DecimalFormat f = new DecimalFormat("##.##");
 
-        amount = Integer.parseInt(args[0]);
         String currency = args[1].toLowerCase();
 
         // For amounts Conversion
@@ -31,7 +41,10 @@ public class CurrencyConverter {
                 pound = amount * 0.84;
                 System.out.println(amount + " Euros = " + f.format(pound) + " Pounds");
                 break;
+            default:
+                System.out.println("Error: Unsupported currency type.");
         }
         System.out.println("Thank you for using the converter.");
     }
 }
+
