@@ -28,22 +28,25 @@ public class CurrencyConverter {
         DecimalFormat f = new DecimalFormat("##.##");
         String result;
 
+        String formattedAmount = f.format(amount);
+
+
         // For amounts Conversion
         switch (currency) {
             case "dollars":
                 pound = amount * 0.74;
                 euro = amount * 0.88;
-                result = amount + " Dollars = " + f.format(pound) + " Pounds, " + f.format(euro) + " Euros";
+                result = formattedAmount + " Dollars = " + f.format(pound) + " Pounds, " + f.format(euro) + " Euros";
                 break;
             case "pounds":
                 dollar = amount * 1.36;
                 euro = amount * 1.19;
-                result = amount + " Pounds = " + f.format(dollar) + " Dollars, " + f.format(euro) + " Euros";
+                result = formattedAmount + " Pounds = " + f.format(dollar) + " Dollars, " + f.format(euro) + " Euros";
                 break;
             case "euros":
                 dollar = amount * 1.13;
                 pound = amount * 0.84;
-                result = amount + " Euros = " + f.format(dollar) + " Dollars, " + f.format(pound) + " Pounds";
+                result = formattedAmount + " Euros = " + f.format(dollar) + " Dollars, " + f.format(pound) + " Pounds";
                 break;
             default:
                 result = "Error: Unsupported currency type.";
