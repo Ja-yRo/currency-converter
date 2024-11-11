@@ -20,7 +20,7 @@ public class CurrencyConverter {
         String result = convert(amount, currency);
         System.out.println(result);
 
-        System.out.println("Thank You for using the converter.");
+        System.out.println("Thanks for using the converter.");
     }
 
     public static String convert(double amount, String currency) {
