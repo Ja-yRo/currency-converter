@@ -16,35 +16,39 @@ public class CurrencyConverter {
             throw new IllegalArgumentException("Error: Amount should be a numeric value.");
         }
 
+        String currency = args[1].toLowerCase();
+        String result = convert(amount, currency);
+        System.out.println(result);
+
+        System.out.println("Thank you for using the converter.");
+    }
+
+    public static String convert(double amount, String currency) {
         double dollar, pound, euro;
         DecimalFormat f = new DecimalFormat("##.##");
-
-        String currency = args[1].toLowerCase();
+        String result;
 
         // For amounts Conversion
         switch (currency) {
             case "dollars":
                 pound = amount * 0.74;
-                System.out.println(amount + " Dollars = " + f.format(pound) + " Pounds");
                 euro = amount * 0.88;
-                System.out.println(amount + " Dollars = " + f.format(euro) + " Euros");
+                result = amount + " Dollars = " + f.format(pound) + " Pounds, " + f.format(euro) + " Euros";
                 break;
             case "pounds":
                 dollar = amount * 1.36;
-                System.out.println(amount + " Pounds = " + f.format(dollar) + " Dollars");
                 euro = amount * 1.19;
-                System.out.println(amount + " Pounds = " + f.format(euro) + " Euros");
+                result = amount + " Pounds = " + f.format(dollar) + " Dollars, " + f.format(euro) + " Euros";
                 break;
             case "euros":
                 dollar = amount * 1.13;
-                System.out.println(amount + " Euros = " + f.format(dollar) + " Dollars");
                 pound = amount * 0.84;
-                System.out.println(amount + " Euros = " + f.format(pound) + " Pounds");
+                result = amount + " Euros = " + f.format(dollar) + " Dollars, " + f.format(pound) + " Pounds";
                 break;
             default:
-                System.out.println("Error: Unsupported currency type.");
+                result = "Error: Unsupported currency type.";
         }
-        System.out.println("Thank you for using the converter.");
+        return result;
     }
 }
 
