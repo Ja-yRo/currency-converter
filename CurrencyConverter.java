@@ -24,6 +24,7 @@ public class CurrencyConverter {
     }
 
     public static String convert(double amount, String currency) {
+        currency = currency.toLowerCase();
         double dollar, pound, euro;
         DecimalFormat f = new DecimalFormat("##.##");
         String result;
